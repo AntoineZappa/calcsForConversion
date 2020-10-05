@@ -1,10 +1,11 @@
 import mock
 import pytest
-import os, sys
-from converter.converter import dec2bin
-from converter.converter import bin2dec
-from converter.converter import bin2complement1
-from converter.converter import bin2complement2
+import os
+import sys
+from converters.binconverter import dec2bin
+from converters.binconverter import bin2dec
+from converters.binconverter import bin2complement1
+from converters.binconverter import bin2complement2
 
 
 def test_dec2bin():
@@ -32,9 +33,9 @@ def test_bin2complement2():
 
 
 def test_init():
-    from converter import converter
-    with mock.patch.object(converter, "main", return_value=45):
-        with mock.patch.object(converter, "__name__", "__main__"):
-            with mock.patch.object(converter.sys, 'exit') as mock_exit:
-                converter.init()
+    from converters import binconverter
+    with mock.patch.object(binconverter, "main", return_value=45):
+        with mock.patch.object(binconverter, "__name__", "__main__"):
+            with mock.patch.object(binconverter.sys, 'exit') as mock_exit:
+                binconverter.init()
                 assert mock_exit.call_args[0][0] == 45
