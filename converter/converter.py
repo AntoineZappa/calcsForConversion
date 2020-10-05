@@ -1,5 +1,12 @@
 #/usr/bin/env python
 
+import sys
+
+
+def init():
+    if __name__ == "__main__":
+        sys.exit(main())
+
 
 def main():
     mode = str(input('''\n
@@ -15,12 +22,8 @@ def main():
 Mode: '''))
 
     if mode == '1':
-        try:
-            number = int(input('Input a number to change the base: '))
-            base = int(input('Input a base: '))
-            
-        except ValueError:
-            print("")
+        number = int(input('Type a number to change the base: '))
+        base = int(input('Type its base: '))
         print(dec2bin(number, base))
 
     elif mode == '2':
@@ -32,12 +35,13 @@ Mode: '''))
         print(bin2complement1(binary))
 
     elif mode == '4':
-        binary = list(input('Input a number in binary: '))
+        binary = str(input('Input a number in binary: '))
         print(bin2complement2(binary))
 
     else:
         print('\n>>>Input not valid. It must be a number in the mode range<<<')
         main()
+
 
 def dec2bin(decimal, base):
     """Convert from decimal to a number with a new base
@@ -51,12 +55,23 @@ def dec2bin(decimal, base):
     """
     conversion = ''
 
-    while decimal // base != 0:
+    try:
+        if base == 1:
+            raise Exception() 
+            result = "Base has to be different than 1"
+        while decimal // base != 0:
 
-        conversion = str(decimal % base) + conversion
-        decimal = decimal // base
-        result = str(decimal) + conversion
+            conversion = str(decimal % base) + conversion
+            decimal = decimal // base
+            result = str(decimal) + conversion
+            
+    except ZeroDivisionError as error:
+        result = f"{error}: Base has to be different than Zero"
     
+    except TypeError as error:
+        
+        result = "Letters of other signs are not allowed"
+
     return result
 
 
@@ -69,18 +84,25 @@ def bin2dec(binary):
     Returns:
         str: str with the final decimal 
     """
-    value = 0
-    binary = list(binary)
-    for i in range(len(binary)):
-        n = binary.pop()
-        if n == '1':
-            value = value + pow(2,i)
 
-    return str(value)
+    result = 0
+    binary = list(binary)
+    
+    try:
+        for i in range(len(binary)):
+            n = binary.pop()
+            if n not in ['1','0']:
+                raise Exception()
+                result = 'Oops!! binaries have only 1s and 0s'
+            if n == '1':
+                result = result + pow(2, i)
+    except Exception:
+        result = 'Oops!! binaries have only 1s and 0s'
+    return str(result)
     
 
 def bin2complement1(binary):
-    """Convert a binary in bincary two's compliment
+    """Convert a binary in bincary one's compliment
 
     Args:
         binary (str): [description]
@@ -88,36 +110,36 @@ def bin2complement1(binary):
     Returns:
         str: str with the new binary
     """
-    result = []
-    for i,n in enumerate(binary):
-        if n == '1':
-            n = '0'
-        elif n == '0':
-            n = '1'
-        result.append(n)
-    integer = int("".join(result),2)
-    binfinal = bin(integer)
+    try: 
+        binmap = map(lambda i: '1' if i == '0' else '0', 
+                    list(binary))
+        binstr = "".join(list(binmap))
+        binfinal = bin(int(binstr, 2))
+        result = str(binfinal).replace('0b', '')
+    except Exception:
+        result = 'Oops!! binaries have only 1s and 0s'
+    return result
 
-    return str(binfinal).replace('0b', '')
 
 def bin2complement2(binary):
+    """Convert decimal into binary two's compliment
 
-    result = []
-    for i, n in enumerate(binary):
-        if i in range(len(binary)):
-            if n == '1':
-                n = '0'
-            elif n == '0':
-                n = '1'
-        result.append(n)
+    Args:
+        binary (str): [description]
 
-    numstr = "".join(result)
-    bin1 = int(numstr, 2)
-    bin2 = int('00000001',2)
-    
-    binfinal = bin (bin1 + bin2)
+    Returns:
+        str: [description]
+    """
+    binmap = map(lambda i: '1' if i == '0' else '0',
+                 list(binary))
+    binstr = "".join(list(binmap))
+
+    intFromBin = int(binstr, 2)
+    intToSumUp = int('00000001',2)
+
+    binfinal = bin(intFromBin + intToSumUp)
     
     return str(binfinal).replace('0b','')
 
-if __name__ == "__main__":
-    main()
+
+init()
