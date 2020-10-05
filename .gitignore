@@ -1,0 +1,9 @@
+# VS_code files
+.vscode
+
+# Cache tests
+__pycache__
+converter/__pycache__
+
+# macOS files
+.DS_Store
