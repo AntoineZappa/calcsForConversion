@@ -39,3 +39,4 @@ def test_init():
             with mock.patch.object(binconverter.sys, 'exit') as mock_exit:
                 binconverter.init()
                 assert mock_exit.call_args[0][0] == 45
+

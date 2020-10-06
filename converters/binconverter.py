@@ -1,14 +1,14 @@
 #/usr/bin/env python
 
 import sys
-
+import os
 
 def init():
     if __name__ == "__main__":
         sys.exit(main())
 
-
 def main():
+
     mode = str(input('''\n
 +------------------------------------------------------------+
 |    Type a number to select a conversion mode:              |

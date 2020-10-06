@@ -1,4 +1,5 @@
 {
+    
     "python.testing.pytestArgs": [
         "tests"
     ],
@@ -11,5 +12,5 @@
         "**/.settings": true,
         "**/.factorypath": true
     },
-    "python.pythonPath": "/Users/antoniogonzalezblanco/VSCode_Projects/calcsForConversion/venv/bin/python3.8"
+    "python.pythonPath": "venv/bin/python"
 }
