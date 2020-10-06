@@ -8,3 +8,7 @@ converter/__pycache__
 
 # macOS files
 .DS_Store
+
+
+# Env
+venv
