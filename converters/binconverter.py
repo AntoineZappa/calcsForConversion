@@ -5,6 +5,7 @@ import os
 
 def init():
     if __name__ == "__main__":
+        
         sys.exit(main())
 
 def main():
