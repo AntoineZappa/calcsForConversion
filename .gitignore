@@ -4,7 +4,7 @@
 # Cache tests
 __pycache__
 .pytest_cache
-converter/__pycache__
+
 
 # macOS files
 .DS_Store

@@ -115,8 +115,8 @@ def bin2complement1(binary):
         binmap = map(lambda i: '1' if i == '0' else '0', 
                     list(binary))
         binstr = "".join(list(binmap))
-        binfinal = bin(int(binstr, 2))
-        result = str(binfinal).replace('0b', '')
+        finalBin = bin(int(binstr, 2))
+        result = str(finalBin).replace('0b', '')
     except Exception:
         result = 'Oops!! binaries have only 1s and 0s'
     return result
@@ -138,9 +138,9 @@ def bin2complement2(binary):
     intFromBin = int(binstr, 2)
     intToSumUp = int('00000001',2)
 
-    binfinal = bin(intFromBin + intToSumUp)
+    finalBin = bin(intFromBin + intToSumUp)
     
-    return str(binfinal).replace('0b','')
+    return str(finalBin).replace('0b','')
 
 
 init()
